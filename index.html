@@ -21,6 +21,21 @@
             </div>
         </header>
 
+        <div class="gallery" id="gallery"></div></div>
+
+        <div class="overlay" id="overlay">
+            <div class="overlay-content">
+                <img src="" alt="Full size image" class="overlay-image" id="overlayImage">
+                <div class="overlay-close" id="overlayClose">&times;</div>
+                <div class="overlay-nav overlay-prev" id="overlayPrev">&lt;</div>
+                <div class="overlay-nav overlay-next" id="overlayNext">&gt;</div>
+                <div class="overlay-info">
+                    <p>@tylergraybeal</p>
+                    <a href="#" class="download-btn" id="downloadBtn">Download Compcard</a>
+                </div>
+            </div>
+        </div>
+
         <div class="stats-container">
           <div class="stats-box">
               <h3>Physical Stats</h3>
@@ -99,23 +114,7 @@
         </div>
         
       </div>
-      
 
-        <div class="gallery" id="gallery"></div>
-    </div>
-
-    <div class="overlay" id="overlay">
-        <div class="overlay-content">
-            <img src="" alt="Full size image" class="overlay-image" id="overlayImage">
-            <div class="overlay-close" id="overlayClose">&times;</div>
-            <div class="overlay-nav overlay-prev" id="overlayPrev">&lt;</div>
-            <div class="overlay-nav overlay-next" id="overlayNext">&gt;</div>
-            <div class="overlay-info">
-                <p>@tylergraybeal</p>
-                <a href="#" class="download-btn" id="downloadBtn">Download Compcard</a>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
   </body>
@@ -123,27 +122,22 @@
   <footer>
     <p>&copy; 2024 Tyler Graybeal. All rights reserved.</p>
     
-    <form id="contact-form" action="send-email.php" method="POST">
-      <div>
-          <label for="name">Your Name:</label>
-          <input type="text" id="name" name="name" required>
-      </div>
+    <!-- Modify this form HTML and place wherever you want your form -->
+    <form id="my-form" action="https://formspree.io/f/movqwprw" method="POST">
+      <label for="email">Your Email:</label>
+      <input type="email" name="email" id="email" required />
       
-      <div>
-          <label for="email">Your Email:</label>
-          <input type="email" id="email" name="email" required>
-      </div>
-  
-      <div>
-          <label for="message">Your Message:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-      </div>
-  
-      <button type="submit">Send Message</button>
-  </form>
-  
+      <label for="message">Your Message:</label>
+      <input type="text" name="message" id="message" required />
+      
+      <button id="my-form-button" type="submit">Submit</button>
+      
+      <p id="my-form-status"></p> <!-- Status message goes here -->
+    </form>
+
   </footer>
 
+  <script src="contact.js"></script>
 
 
 </html>
