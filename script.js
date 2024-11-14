@@ -16,6 +16,7 @@ const overlayClose = document.getElementById('overlayClose');
 const overlayPrev = document.getElementById('overlayPrev');
 const overlayNext = document.getElementById('overlayNext');
 const downloadBtn = document.getElementById('downloadBtn');
+const overlayDownloadBtn = document.getElementById('overlayDownloadBtn');
 
 let currentImageIndex = 0;
 
@@ -55,10 +56,7 @@ function showNextImage() {
   overlayImage.src = extendedImages[currentImageIndex];
 }
 
-overlayClose.addEventListener('click', closeOverlay);
-overlayPrev.addEventListener('click', showPrevImage);
-overlayNext.addEventListener('click', showNextImage);
-downloadBtn.addEventListener('click', (e) => {
+function handleDownload(e) {
   e.preventDefault();
   
   // Set the URL of the image to download
@@ -71,19 +69,25 @@ downloadBtn.addEventListener('click', (e) => {
   
   // Programmatically click the link to trigger the download
   link.click();
-});
+}
 
+// Event Listeners
+overlayClose.addEventListener('click', closeOverlay);
+overlayPrev.addEventListener('click', showPrevImage);
+overlayNext.addEventListener('click', showNextImage);
+downloadBtn.addEventListener('click', handleDownload);
+overlayDownloadBtn.addEventListener('click', handleDownload);
 
 overlay.addEventListener('click', (e) => {
   if (e.target === overlay) {
-      closeOverlay();
+    closeOverlay();
   }
 });
 
 document.addEventListener('keydown', (e) => {
   if (overlay.style.display === 'block') {
-      if (e.key === 'Escape') closeOverlay();
-      if (e.key === 'ArrowLeft') showPrevImage();
-      if (e.key === 'ArrowRight') showNextImage();
+    if (e.key === 'Escape') closeOverlay();
+    if (e.key === 'ArrowLeft') showPrevImage();
+    if (e.key === 'ArrowRight') showNextImage();
   }
 });
