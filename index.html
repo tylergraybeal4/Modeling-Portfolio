@@ -3,42 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tyler Graybeal - Model Portfolio</title>
+    <title>Tyler Graybeal - Professional Model</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="hero">
             <h1>Tyler Graybeal</h1>
-            <p class="about-me-text">Hi! I'm Tyler Graybeal, a professional model represented by leading agencies across the U.S. and internationally. With a dedication to versatility and a keen eye for detail, I bring energy, authenticity, and style to every project. From high fashion to commercial campaigns, I strive to embody each brand's vision and connect with audiences. Thanks for visiting—take a look around, and feel free to reach out for collaborations!</p>
-            <a href="#" class="download-compcard" id="downloadBtn">Download Compcard</a>
-            <div class="social-links">
-                <a href="https://www.instagram.com/tylergraybeal/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:tylergraybealmodeling@gmail.com"><i class="fas fa-envelope"></i></a>
+            <div class="hero-content">
+                <p>Professional model represented by leading agencies across the U.S. and internationally. With a dedication to versatility and a keen eye for detail, I bring energy, authenticity, and style to every project. From high fashion to commercial campaigns, I strive to embody each brand's vision and connect with audiences.</p>
+                <a href="#" class="cta-button" id="downloadBtn">Download Compcard</a>
             </div>
         </header>
 
-        <div class="gallery" id="gallery"></div>
+        <nav class="social-links">
+            <a href="https://www.instagram.com/tylergraybeal/" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:tylergraybeal4@gmail.com" class="social-link">
+                <i class="far fa-envelope"></i>
+            </a>
+        </nav>
 
-        <div class="overlay" id="overlay">
+        <div id="gallery" class="gallery">
+            <!-- Images populated by JavaScript -->
+        </div>
+
+        <div id="overlay" class="overlay">
             <div class="overlay-content">
-                <img src="" alt="Full size image" class="overlay-image" id="overlayImage">
-                <div class="overlay-close" id="overlayClose">&times;</div>
-                <div class="overlay-nav overlay-prev" id="overlayPrev">&lt;</div>
-                <div class="overlay-nav overlay-next" id="overlayNext">&gt;</div>
+                <img src="" id="overlayImage" class="overlay-image" alt="Full size image">
+                <div id="overlayClose" class="overlay-close">×</div>
+                <div id="overlayPrev" class="overlay-nav overlay-prev">‹</div>
+                <div id="overlayNext" class="overlay-nav overlay-next">›</div>
                 <div class="overlay-info">
-                    <p>@tylergraybeal</p>
-                    <a href="#" class="download-btn" id="downloadBtn">Download Compcard</a>
+                    @tylergraybeal
+                    <a href="#" id="overlayDownloadBtn" class="download-btn">Download Compcard</a>
                 </div>
             </div>
         </div>
 
-        <div class="stats-container">
+        <section class="stats-container">
             <div class="stats-box">
                 <h3>Physical Stats</h3>
                 <div class="stats-content">
@@ -80,85 +86,95 @@
             <div class="stats-box">
                 <h3>Agencies</h3>
                 <div class="agency-content">
-            
                     <!-- Cima Talent Management -->
                     <div class="agency-item">
                         <a href="https://cimamodelmgmt.cds-official.com/fashion_men/tyler-graybeal?fbclid=PAZXh0bgNhZW0CMTEAAaaanJIfD876OgcBghJHXzhmqro9h_QWuJr6_RVUAsnjwFZHi-zGtvs7L14_aem_0GXiv2i2KdEdpElW1xvsvw" target="_blank">
-                            <p><strong>Cima Talent Management</strong> (MA)</p>
+                            <span class="agency-name">Cima Talent Management</span>
+                            <span class="agency-location">MA</span>
                         </a>
-                        <a href="https://www.instagram.com/cimatalentmanagement/" target="_blank">
+                        <a href="https://www.instagram.com/cimatalentmanagement/" target="_blank" class="agency-social">
                             <img src="https://github.com/tylergraybeal4/Modeling-Portfolio/blob/main/instagram-1-svgrepo-com.png?raw=true" alt="Instagram" class="agency-icon">
                         </a>
                     </div>
-            
+
                     <!-- 10MGMT -->
                     <div class="agency-item">
                         <a href="https://www.10mgmt.com/divisions/models-new-faces/portfolios/tyler-graybeal?fbclid=PAZXh0bgNhZW0CMTEAAaZ7FG7nPuMx7uh1AR5qFaFhfCvrhx0CKIsBtF4tMXb5ToXdPv0dnBbAtT4_aem_FQ5JqoAkpLzhiR0tnsvPzQ" target="_blank">
-                            <p><strong>10MGMT</strong> (Chicago/NYC)</p>
+                            <span class="agency-name">10MGMT</span>
+                            <span class="agency-location">Chicago/NYC</span>
                         </a>
-                        <a href="https://www.instagram.com/10mgmt/" target="_blank">
+                        <a href="https://www.instagram.com/10mgmt/" target="_blank" class="agency-social">
                             <img src="https://github.com/tylergraybeal4/Modeling-Portfolio/blob/main/instagram-1-svgrepo-com.png?raw=true" alt="Instagram" class="agency-icon">
                         </a>
                     </div>
-            
+
                     <!-- Click Models -->
                     <div class="agency-item">
                         <a href="https://www.clickmodelsphilly.com/men/all/2672378/tyler-graybeal" target="_blank">
-                            <p><strong>Click Models</strong> (Philly)</p>
+                            <span class="agency-name">Click Models</span>
+                            <span class="agency-location">Philly</span>
                         </a>
-                        <a href="https://www.instagram.com/clickmodelsreneelauren/" target="_blank">
+                        <a href="https://www.instagram.com/clickmodelsreneelauren/" target="_blank" class="agency-social">
                             <img src="https://github.com/tylergraybeal4/Modeling-Portfolio/blob/main/instagram-1-svgrepo-com.png?raw=true" alt="Instagram" class="agency-icon">
                         </a>
                     </div>
-            
+
                     <!-- Vie Models -->
                     <div class="agency-item">
                         <a href="https://www.instagram.com/vie_models.bkk/" target="_blank">
-                            <p><strong>Vie Models</strong> (Bangkok)</p>
+                            <span class="agency-name">Vie Models</span>
+                            <span class="agency-location">Bangkok</span>
                         </a>
-                        <a href="https://www.instagram.com/vie_models.bkk/" target="_blank">
+                        <a href="https://www.instagram.com/vie_models.bkk/" target="_blank" class="agency-social">
                             <img src="https://github.com/tylergraybeal4/Modeling-Portfolio/blob/main/instagram-1-svgrepo-com.png?raw=true" alt="Instagram" class="agency-icon">
                         </a>
                     </div>
-            
+
                     <!-- Marilyns Agency -->
                     <div class="agency-item">
-                        <a href="https://marilynsagency.com/?fbclid=PAZXh0bgNhZW0CMTEAAaatgRofwPZ6w-bPJ4SCiBUkjmX7RHrIi3tDGLL8ApvqRwkRysXeeGTM4WQ_aem_pLuor2ierabc8pQW6z4aAg" target="_blank" style="text-decoration: none;">
-                            <p><strong>Marilyns Agency</strong> (SC/NC)</p>
+                        <a href="https://marilynsagency.com/?fbclid=PAZXh0bgNhZW0CMTEAAaatgRofwPZ6w-bPJ4SCiBUkjmX7RHrIi3tDGLL8ApvqRwkRysXeeGTM4WQ_aem_pLuor2ierabc8pQW6z4aAg" target="_blank">
+                            <span class="agency-name">Marilyns Agency</span>
+                            <span class="agency-location">SC/NC</span>
                         </a>
-                        <a href="https://www.instagram.com/marilynsagency/" target="_blank">
+                        <a href="https://www.instagram.com/marilynsagency/" target="_blank" class="agency-social">
                             <img src="https://github.com/tylergraybeal4/Modeling-Portfolio/blob/main/instagram-1-svgrepo-com.png?raw=true" alt="Instagram" class="agency-icon">
                         </a>
                     </div>
-            
                 </div>
             </div>
+        </section>
+
+        <section class="section contact-section">
+            <h3>Let's Connect!</h3>
             
-        </div>
-
-        <footer>
             <form id="my-form" action="https://formspree.io/f/movqwprw" method="POST">
-                <h3>Let's Connect!</h3>
-
-                <label for="name">Full Name:</label>
-                <input type="text" name="message" id="message" required />
-
-                <label for="email">Your Email:</label>
-                <input type="email" name="email" id="email" required />
-                
-                <label for="message">Your Message:</label>
-                <input type="text" name="message" id="message" required />
-                
-                
-                <button id="my-form-button" type="submit">Submit</button>
-                
-                <p id="my-form-status"></p> <!-- Status message goes here -->
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="name" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea name="message" required></textarea>
+              </div>
+              
+              <button type="submit">Send Message</button>
+              
+              <div id="my-form-status" class="form-status"></div>
             </form>
-            <p>&copy; 2024 Tyler Graybeal. All rights reserved.</p>
-        </footer>
-
-        <script src="script.js"></script>
-        <script src="contact.js"></script>
+          </section>
     </div>
+
+    <footer>
+        <p>© 2024 Tyler Graybeal. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
 </body>
 </html>
