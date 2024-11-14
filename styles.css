@@ -55,6 +55,19 @@ h1 {
   line-height: 1.2;
 }
 
+.about-me-text{
+
+  color: #ffffff;
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.download-compcard{
+  user-select: none;
+  color: rgb(255, 255, 255);
+  
+  
+}
 /* Enhanced Gallery */
 .gallery {
   display: flex;
