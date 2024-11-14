@@ -1,3 +1,4 @@
+// Image array
 const images = [
   'https://iili.io/2Af8hf1.jpg',
   'https://iili.io/2Af8VWB.jpg',
@@ -58,9 +59,45 @@ const images = [
   'https://iili.io/2AfkNB1.jpg'
 ];
 
+// Image loading utilities
+const createImageLoader = () => {
+  const imageCache = new Map();
+  const loadingPromises = new Map();
 
-const extendedImages = [...images];
+  const preloadImage = (src) => {
+    if (imageCache.has(src)) {
+      return Promise.resolve(imageCache.get(src));
+    }
 
+    if (loadingPromises.has(src)) {
+      return loadingPromises.get(src);
+    }
+
+    const promise = new Promise((resolve, reject) => {
+      const img = new Image();
+      
+      img.onload = () => {
+        imageCache.set(src, img);
+        loadingPromises.delete(src);
+        resolve(img);
+      };
+      
+      img.onerror = () => {
+        loadingPromises.delete(src);
+        reject(new Error(`Failed to load image: ${src}`));
+      };
+      
+      img.src = src;
+    });
+
+    loadingPromises.set(src, promise);
+    return promise;
+  };
+
+  return { preloadImage };
+};
+
+// DOM Elements
 const gallery = document.getElementById('gallery');
 const overlay = document.getElementById('overlay');
 const overlayImage = document.getElementById('overlayImage');
@@ -71,24 +108,90 @@ const downloadBtn = document.getElementById('downloadBtn');
 const overlayDownloadBtn = document.getElementById('overlayDownloadBtn');
 
 let currentImageIndex = 0;
+const imageLoader = createImageLoader();
 
-extendedImages.forEach((src, index) => {
-  const item = document.createElement('div');
-  item.className = 'gallery-item';
-  
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = `Tyler Graybeal - Image ${index + 1}`;
-  img.loading = 'lazy';
-  
-  item.appendChild(img);
-  item.addEventListener('click', () => openOverlay(index));
-  gallery.appendChild(item);
-});
+// Initialize gallery with lazy loading
+const initGallery = () => {
+  // Create intersection observer for lazy loading
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        loadImage(img);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '50px',
+    threshold: 0.1
+  });
 
+  // Create and append gallery items
+  images.forEach((src, index) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    
+    const img = document.createElement('img');
+    img.dataset.src = src;
+    img.alt = `Tyler Graybeal - Image ${index + 1}`;
+    img.loading = 'lazy';
+    img.classList.add('image-loading');
+    
+    item.appendChild(img);
+    item.addEventListener('click', () => openOverlay(index));
+    gallery.appendChild(item);
+    
+    // Observe for lazy loading
+    observer.observe(img);
+  });
+
+  // Preload first few images
+  images.slice(0, 4).forEach(src => imageLoader.preloadImage(src));
+};
+
+// Load individual images
+const loadImage = async (imgElement) => {
+  try {
+    const src = imgElement.dataset.src;
+    if (!src) return;
+
+    await imageLoader.preloadImage(src);
+    imgElement.src = src;
+    imgElement.classList.add('loaded');
+    
+    // Preload next few images
+    const index = images.indexOf(src);
+    if (index !== -1) {
+      const nextImages = images.slice(index + 1, index + 4);
+      nextImages.forEach(nextSrc => imageLoader.preloadImage(nextSrc));
+    }
+  } catch (error) {
+    console.error('Error loading image:', error);
+  }
+};
+
+// Overlay functions
 function openOverlay(index) {
   currentImageIndex = index;
-  overlayImage.src = extendedImages[index];
+  const src = images[index];
+  
+  // Show loading state
+  overlayImage.style.opacity = '0.5';
+  
+  // Load image
+  imageLoader.preloadImage(src).then(() => {
+    overlayImage.src = src;
+    overlayImage.style.opacity = '1';
+    
+    // Preload adjacent images
+    if (index < images.length - 1) {
+      imageLoader.preloadImage(images[index + 1]);
+    }
+    if (index > 0) {
+      imageLoader.preloadImage(images[index - 1]);
+    }
+  });
+  
   overlay.style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
@@ -99,31 +202,26 @@ function closeOverlay() {
 }
 
 function showPrevImage() {
-  currentImageIndex = (currentImageIndex - 1 + extendedImages.length) % extendedImages.length;
-  overlayImage.src = extendedImages[currentImageIndex];
+  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+  openOverlay(currentImageIndex);
 }
 
 function showNextImage() {
-  currentImageIndex = (currentImageIndex + 1) % extendedImages.length;
-  overlayImage.src = extendedImages[currentImageIndex];
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  openOverlay(currentImageIndex);
 }
 
 function handleDownload(e) {
   e.preventDefault();
-  
-  // Set the URL of the image to download
   const imageUrl = 'https://github.com/tylergraybeal4/Modeling-Portfolio/blob/main/Modeling-pics/IMG_5652.JPG?raw=true';
-
-  // Create an anchor element and set the download attributes
   const link = document.createElement('a');
   link.href = imageUrl;
-  link.download = 'Tyler_Graybeal_Compcard.png'; // Set the desired file name for download
-  
-  // Programmatically click the link to trigger the download
+  link.download = 'Tyler_Graybeal_Compcard.png';
   link.click();
 }
 
 // Event Listeners
+document.addEventListener('DOMContentLoaded', initGallery);
 overlayClose.addEventListener('click', closeOverlay);
 overlayPrev.addEventListener('click', showPrevImage);
 overlayNext.addEventListener('click', showNextImage);
