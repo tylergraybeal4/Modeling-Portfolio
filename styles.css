@@ -304,7 +304,7 @@ h1 {
 
 .overlay-close:hover,
 .overlay-nav:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(39, 39, 39, 0.9);
   transform: scale(1.1);
 }
 
