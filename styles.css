@@ -179,6 +179,8 @@ h1 {
   font-size: 1.8rem;
   margin-bottom: calc(var(--spacing) * 2);
   color: var(--accent);
+  text-align: center;
+  
 }
 
 .stats-content {
@@ -314,13 +316,11 @@ h1 {
 .overlay-prev {
   left: calc(var(--spacing) * 2);
   top: 50%;
-  transform: translateY(-50%);
 }
 
 .overlay-next {
   right: calc(var(--spacing) * 2);
-  top: 50%;
-  transform: translateY(-50%);
+  top: 50%; 
 }
 
 /* Redesigned overlay info */
@@ -341,8 +341,14 @@ h1 {
 .overlay-info .instagram-handle {
   font-size: 1rem;
   font-weight: 500;
+  
 }
 
+.overlay-insta{
+user-select: none;
+color: #ffffff;
+
+}
 .overlay-info .download-btn {
   padding: 0.5rem 1.5rem;
   background: var(--gradient);
@@ -374,6 +380,7 @@ h1 {
   font-size: 1.8rem;
   margin-bottom: calc(var(--spacing) * 2);
   color: var(--accent);
+  text-align: center;
 }
 
 .contact-form {
